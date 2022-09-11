@@ -23,11 +23,20 @@ Solution: https://gist.github.com/Tambunan26/9063521fdf406645aad4527ccd069149
 - Google Cloud customer case study: https://youtu.be/OQPpEEMm6Gg
 - Recap: https://youtu.be/ojk2_G27fDA
 - Lab Intro: Using BigQuery to do Analysis: https://youtu.be/cewC0d-rZcw
-- Lab Link: https://partner.cloudskillsboost.google/course_sessions/1555839/labs/329887
-- Introduction to Data Engineering Quiz: https://partner.cloudskillsboost.google/course_sessions/1555839/quizzes/329888
+- Lab Using BigQuery to do Analysis: https://partner.cloudskillsboost.google/course_sessions/1555839/labs/329887
+- Quiz: Introduction to Data Engineering: https://partner.cloudskillsboost.google/course_sessions/1555839/quizzes/329888
 
-
-
+### Building a Data Lake
+- Module introduction: https://youtu.be/h0QOTKAqOPI
+- Introduction to data lakes: https://youtu.be/fApTba65Dnk
+- Data storage and ETL options on Google Cloud: https://youtu.be/KEDmYdVDgkM
+- Build a data lake using Cloud Storage: https://youtu.be/kdlkT2mrXq0
+- Secure Cloud Storage: https://youtu.be/rN-wqaTYD6s
+- Store all sorts of data types: https://youtu.be/v2M8w1DgBE8
+- Cloud SQL as a relational data lake: https://youtu.be/-JdVsFrAh0U
+- Lab Intro: Loading Taxi Data into Google Cloud SQL: https://youtu.be/YYIcoji3R3g
+- Lab: Loading Taxi Data into Google Cloud SQL 2.5: https://partner.cloudskillsboost.google/course_sessions/1555839/labs/329897
+- Quiz: Building a Data Lake: https://partner.cloudskillsboost.google/course_sessions/1555839/quizzes/329898
 
 
 
