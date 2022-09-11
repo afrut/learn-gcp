@@ -57,6 +57,11 @@ Solution: https://gist.github.com/Tambunan26/9063521fdf406645aad4527ccd069149
 - Lab: Working with JSON and Array data in BigQuery 2.5: https://partner.cloudskillsboost.google/course_sessions/1555839/labs/329914
 - Optimize with partitioning and clustering: https://youtu.be/au-sXhQtceA
 - Review: https://youtu.be/qRfbNz8B8-I
+- Quiz: Building a Data Warehouse: https://partner.cloudskillsboost.google/course_sessions/1555839/quizzes/329917
+
+### Course Review
+- Course Review: https://youtu.be/iSimjgSrXd4
+- Course resources: https://partner.cloudskillsboost.google/course_sessions/1555839/documents/329919
 
 # Miscellaneous:
 Google Cloud Product Cheat Sheet: https://googlecloudcheatsheet.withgoogle.com/
