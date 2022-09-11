@@ -38,7 +38,15 @@ Solution: https://gist.github.com/Tambunan26/9063521fdf406645aad4527ccd069149
 - Lab: Loading Taxi Data into Google Cloud SQL 2.5: https://partner.cloudskillsboost.google/course_sessions/1555839/labs/329897
 - Quiz: Building a Data Lake: https://partner.cloudskillsboost.google/course_sessions/1555839/quizzes/329898
 
-
+### Building a Data Warehouse
+- Module Introduction: https://youtu.be/GdjJyC0q5ho
+- The modern data warehouse: https://youtu.be/EsvenuliSsc
+- Introduction to BigQuery: https://youtu.be/ee6wsaOM12Y
+- Demo: Querying TB of data in seconds: https://youtu.be/DAPiUo3sAFA
+- Get started with BigQuery: https://youtu.be/p10DSZ9T_Mg
+- Load data into BigQuery: https://youtu.be/TKHt3ujcC0c
+- Lab Intro: Loading Data into BigQuery: https://youtu.be/0B5dKQ8WtvE
+- Lab: Loading data into BigQuery: https://partner.cloudskillsboost.google/course_sessions/1555839/labs/329906
 
 # Miscellaneous:
 Google Cloud Product Cheat Sheet: https://googlecloudcheatsheet.withgoogle.com/
