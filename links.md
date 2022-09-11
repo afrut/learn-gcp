@@ -47,7 +47,18 @@ Solution: https://gist.github.com/Tambunan26/9063521fdf406645aad4527ccd069149
 - Load data into BigQuery: https://youtu.be/TKHt3ujcC0c
 - Lab Intro: Loading Data into BigQuery: https://youtu.be/0B5dKQ8WtvE
 - Lab: Loading data into BigQuery: https://partner.cloudskillsboost.google/course_sessions/1555839/labs/329906
+- Explore schemas: https://youtu.be/pKDZ5XTD2ig
+- Demo: Exploring Schemas: https://youtu.be/JvRq6DYmcLk
+- Schema design: https://youtu.be/3fOWdnT16kw
+- Nested and repeated fields: https://youtu.be/au6WsT14ODc
+- Demo: Nested and repeated fields: https://youtu.be/jiBSkTa_N50
+- Design the optimal schema for BigQuery: https://youtu.be/pa0Yhe0g2g8
+- Lab Intro: Working with JSON and Array data in BigQuery: https://youtu.be/vhTaUHNXFYY
+- Lab: Working with JSON and Array data in BigQuery 2.5: https://partner.cloudskillsboost.google/course_sessions/1555839/labs/329914
+- Optimize with partitioning and clustering: https://youtu.be/au-sXhQtceA
+- Review: https://youtu.be/qRfbNz8B8-I
 
 # Miscellaneous:
 Google Cloud Product Cheat Sheet: https://googlecloudcheatsheet.withgoogle.com/
 BigQuery public dataset project name: bigquery-public-data
+Course Demos; https://github.com/gstripling/training-data-analyst-1/tree/master/courses/data-engineering/demos
