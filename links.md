@@ -63,6 +63,38 @@ Solution: https://gist.github.com/Tambunan26/9063521fdf406645aad4527ccd069149
 - Course Review: https://youtu.be/iSimjgSrXd4
 - Course resources: https://partner.cloudskillsboost.google/course_sessions/1555839/documents/329919
 
+
+
+## Building Batch Data Pipelines on Google Cloud
+- Course Link: https://go.cloudplatformonline.com/ODA4LUdKVy0zMTQAAAGGpU9VqFOTRYxKrFic1S_5-A-PeUTkTA_wSx4rAiyaBLct5cExHRYX_rYUyHIZVpMJ-P2WAYE=
+- Course introduction: https://youtu.be/wKf9U8ENNeg
+
+### Introduction to Building Batch Data Pipelines
+- Module Introduction: https://youtu.be/MCb11jdTl44
+- EL, ELT, ETL: https://youtu.be/bFC1MBijB-c
+- Quality considerations: https://youtu.be/5ZPCEzLpS38
+- How to carry out operations in BigQuery: https://youtu.be/9Je7HIS9ttY
+- Shortcomings: https://youtu.be/eWNo-kNF40I
+- ETL to solve data quality issues: https://youtu.be/3Tu8CmXCjiM
+- Quiz: Introduction to Building Batch Data Pipelines: https://partner.cloudskillsboost.google/course_sessions/1572049/quizzes/329761
+
+### Executing Spark on Dataproc
+- Module introduction: https://youtu.be/jH5n2w6-dHI
+- The Hadoop ecosystem: https://youtu.be/ohroxsisQ0w
+- Running Hadoop on Dataproc: https://youtu.be/NIVvl_T7IZw
+- Cloud Storage instead of HDFS: https://youtu.be/cfXJFrSJkeI
+- Optimizing Dataproc: https://youtu.be/EhycuTyEyJc
+- Optimizing Dataproc storage: https://youtu.be/u1ohtiQ35us
+- Optimizing Dataproc templates and autoscaling: https://youtu.be/mpiEhTdGqHY
+- Optimizing Dataproc monitoring: https://youtu.be/6rLJyoVyIKg
+- Lab Intro: Running Apache Spark jobs on Dataproc: https://youtu.be/azSQYl33TPc
+- Lab: Running Apache Spark jobs on Cloud Dataproc: https://partner.cloudskillsboost.google/course_sessions/1572049/labs/329771
+- Summary: https://youtu.be/A6ULKl-sg04
+- Quiz: Executing Spark on Dataproc: https://partner.cloudskillsboost.google/course_sessions/1572049/quizzes/329773
+
+
+
+
 # Miscellaneous:
 Google Cloud Product Cheat Sheet: https://googlecloudcheatsheet.withgoogle.com/
 BigQuery public dataset project name: bigquery-public-data
