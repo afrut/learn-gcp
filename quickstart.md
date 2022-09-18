@@ -1,4 +1,6 @@
 # Quickstart for gcloud
+- gcloud installation: https://cloud.google.com/sdk/docs/install
+
 - Initialize after installation.
 ```
 gcloud init
