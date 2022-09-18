@@ -104,7 +104,12 @@ Solution: https://gist.github.com/Tambunan26/9063521fdf406645aad4527ccd069149
 - Aggregate with GroupByKey and Combine: https://youtu.be/Wix0dw0gcRY
 - Lab Intro: MapReduce in Beam: https://youtu.be/uZHR1hCeG54
 - Lab: MapReduce in Beam (Python) 2.5: https://partner.cloudskillsboost.google/course_sessions/1572049/labs/329785
-- 
+- Side inputs and windows of data: https://youtu.be/nD9kM1TnC2M
+- Lab Intro: Practicing Pipeline Side Inputs: https://youtu.be/rvU-R5k34e0
+- Lab: Serverless Data Analysis with Dataflow: Side Inputs (Python): https://partner.cloudskillsboost.google/course_sessions/1572049/labs/329789
+- Creating and re-using pipeline templates: https://youtu.be/PaR2TF9nlFQ
+- Summary: https://youtu.be/MTKlxSdSaqg
+- Quiz: hServerless Data Processing with Dataflow: ttps://partner.cloudskillsboost.google/course_sessions/1572049/quizzes/329793
 
 
 
