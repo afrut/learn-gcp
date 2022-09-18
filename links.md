@@ -111,6 +111,17 @@ Solution: https://gist.github.com/Tambunan26/9063521fdf406645aad4527ccd069149
 - Summary: https://youtu.be/MTKlxSdSaqg
 - Quiz: hServerless Data Processing with Dataflow: ttps://partner.cloudskillsboost.google/course_sessions/1572049/quizzes/329793
 
+### Manage Data Pipelines with Cloud Data Fusion and Cloud Composer
+- Module introduction: https://youtu.be/uCdOp2b8Pfs
+- Introduction to Cloud Data Fusion: https://youtu.be/XIdvyM0nHAk
+- Components of Cloud Data Fusion: https://youtu.be/wf-cS-xWYNE
+- Cloud Data Fusion UI: https://youtu.be/BgZKu9ojP10
+- Build a pipeline: https://youtu.be/hZNH2StTJMg
+- Explore data using wrangler: https://youtu.be/WxezGlSwPd4
+- Lab Intro: Building and executing a pipeline graph in Cloud Data Fusion: https://youtu.be/y6hfeK6Octc
+- Lab: Building and Executing a Pipeline Graph with Data Fusion 2.5: https://partner.cloudskillsboost.google/course_sessions/1572049/labs/329801
+
+
 
 
 # Miscellaneous:
