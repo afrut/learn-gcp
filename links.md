@@ -120,7 +120,18 @@ Solution: https://gist.github.com/Tambunan26/9063521fdf406645aad4527ccd069149
 - Explore data using wrangler: https://youtu.be/WxezGlSwPd4
 - Lab Intro: Building and executing a pipeline graph in Cloud Data Fusion: https://youtu.be/y6hfeK6Octc
 - Lab: Building and Executing a Pipeline Graph with Data Fusion 2.5: https://partner.cloudskillsboost.google/course_sessions/1572049/labs/329801
+- Orchestrate work between Google Cloud services with Cloud Composer: https://youtu.be/CUfkVealBD4
+- Apache Airflow environment: https://youtu.be/AjXWyjfE0xs
+- DAGs and Operators: https://youtu.be/3L6TPz2m0hM
+- Workflow scheduling: https://youtu.be/73BpZcrdcMY
+- Monitoring and Logging: https://youtu.be/Zk2eBpaP-iQ
+- Lab Intro: An Introduction to Cloud Composer: https://youtu.be/_kwKpFcyaKM
+- Lab: An Introduction to Cloud Composer 2.5: https://partner.cloudskillsboost.google/course_sessions/1572049/labs/329808
+- Quiz: Manage Data Pipelines with Cloud Data Fusion and Cloud Composer: https://partner.cloudskillsboost.google/course_sessions/1572049/quizzes/329809
 
+### Course Summary
+- Course Summary: https://youtu.be/daClA5yXf38
+- Course Resources: https://partner.cloudskillsboost.google/course_sessions/1572049/documents/329811
 
 
 
