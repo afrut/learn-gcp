@@ -16,3 +16,8 @@ export PROJECT=$(gcloud info --format="value(config.project)")
 echo $ACCOUNT
 echo $PROJECT
 ```
+
+- Set project id.
+```
+gcloud config set project $PROJECT
+```
