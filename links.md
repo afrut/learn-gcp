@@ -92,6 +92,16 @@ Solution: https://gist.github.com/Tambunan26/9063521fdf406645aad4527ccd069149
 - Summary: https://youtu.be/A6ULKl-sg04
 - Quiz: Executing Spark on Dataproc: https://partner.cloudskillsboost.google/course_sessions/1572049/quizzes/329773
 
+### Serverless Data Processing with Dataflow
+- Module introduction: https://youtu.be/tauv5NTwFt0
+- Introduction to Dataflow: https://youtu.be/ycR0oJk7JnA
+- Why customers value Dataflow: https://youtu.be/HZrYZ1vZdB4
+- Building Dataflow pipelines in code: https://youtu.be/w42tMVKPFV4
+- Key considerations with designing pipelines: https://youtu.be/kXc50F97wSE
+- Transforming data with PTransforms: https://youtu.be/a1cMK8KGWlA
+- Lab Intro: Building a Simple Dataflow Pipeline: https://youtu.be/ZI2z63STsFM
+- Lab: A Simple Dataflow Pipeline (Python) 2.5: https://partner.cloudskillsboost.google/course_sessions/1572049/labs/329781
+- 
 
 
 
