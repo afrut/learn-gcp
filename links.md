@@ -135,6 +135,18 @@ Solution: https://gist.github.com/Tambunan26/9063521fdf406645aad4527ccd069149
 
 
 
+## Building Resilient Streaming Analytics Systems on Google Cloud
+- Course Link: https://go.cloudplatformonline.com/ODA4LUdKVy0zMTQAAAGGyVvrmDGiKq-LBwWueNWaMK3MCXPfhgSuGK6zTKamNW6M88wdqoRvcAn8mtHnmJbC9_bhKi0=
+- Course Introduction: https://youtu.be/a4heGr90IY4
+
+### Introduction to Processing Stream Data
+- Processing streaming data: https://youtu.be/3Y7PhzFbz_s
+- Quiz: Introduction to Processing Streaming Data: https://partner.cloudskillsboost.google/course_sessions/1602024/quizzes/329458
+
+
+
+
+
 # Miscellaneous:
 Google Cloud Product Cheat Sheet: https://googlecloudcheatsheet.withgoogle.com/
 BigQuery public dataset project name: bigquery-public-data
