@@ -45,7 +45,7 @@ git clone https://github.com/GoogleCloudPlatform/training-data-analyst
 gsutil mb -l US gs://$PROJECT_ID
 ``` 
 
-## Inspect the source file
+## Inspect source
 - View the grep.py file.
 ```
 cd ~/training-data-analyst/courses/data_analysis/lab2/python

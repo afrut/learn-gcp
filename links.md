@@ -101,6 +101,9 @@ Solution: https://gist.github.com/Tambunan26/9063521fdf406645aad4527ccd069149
 - Transforming data with PTransforms: https://youtu.be/a1cMK8KGWlA
 - Lab Intro: Building a Simple Dataflow Pipeline: https://youtu.be/ZI2z63STsFM
 - Lab: A Simple Dataflow Pipeline (Python) 2.5: https://partner.cloudskillsboost.google/course_sessions/1572049/labs/329781
+- Aggregate with GroupByKey and Combine: https://youtu.be/Wix0dw0gcRY
+- Lab Intro: MapReduce in Beam: https://youtu.be/uZHR1hCeG54
+- Lab: MapReduce in Beam (Python) 2.5: https://partner.cloudskillsboost.google/course_sessions/1572049/labs/329785
 - 
 
 
