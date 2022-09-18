@@ -21,3 +21,8 @@ echo $PROJECT
 ```
 gcloud config set project $PROJECT
 ```
+
+- List all services.
+```
+gcloud services list
+```
