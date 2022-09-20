@@ -28,3 +28,15 @@ gcloud config set project $PROJECT
 ```
 gcloud services list
 ```
+
+- Get the zone of a vm VM.
+```
+gcloud compute instances list --filter=$VM --format=json |
+    jq -r '.[0].zone' |
+    sed "s/^.\+\/\([a-z0-9-]*\)$/\1/"
+```
+
+- ssh into a virtual machine instance.
+```
+gcloud compute ssh $VM --zone=$ZONE
+```

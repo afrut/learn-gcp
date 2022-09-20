@@ -135,6 +135,8 @@ Solution: https://gist.github.com/Tambunan26/9063521fdf406645aad4527ccd069149
 
 
 
+# Week 3
+
 ## Building Resilient Streaming Analytics Systems on Google Cloud
 - Course Link: https://go.cloudplatformonline.com/ODA4LUdKVy0zMTQAAAGGyVvrmDGiKq-LBwWueNWaMK3MCXPfhgSuGK6zTKamNW6M88wdqoRvcAn8mtHnmJbC9_bhKi0=
 - Course Introduction: https://youtu.be/a4heGr90IY4
@@ -143,7 +145,15 @@ Solution: https://gist.github.com/Tambunan26/9063521fdf406645aad4527ccd069149
 - Processing streaming data: https://youtu.be/3Y7PhzFbz_s
 - Quiz: Introduction to Processing Streaming Data: https://partner.cloudskillsboost.google/course_sessions/1602024/quizzes/329458
 
-
+### Serverless Messaging with Pub/Sub
+- Module introduction: https://youtu.be/49P1g12gjUU
+- Introduction to Pub/Sub: https://youtu.be/r2VGd_N-ln4
+- Pub/Sub Push versus Pull: https://youtu.be/MKTkErgpSyI
+- Publishing with Pub/Sub code: https://youtu.be/Ud7J0e0GQXU
+- Summary: https://youtu.be/tgxV4C6XD6o
+- Lab Intro: Publish Streaming Data into Pub/Sub: https://youtu.be/xchmFUb9noQ
+- Lab: Streaming Data Processing: Publish Streaming Data into PubSub: https://partner.cloudskillsboost.google/course_sessions/1602024/labs/329465
+- Quiz: Serverless Messaging with Pub/Sub: https://partner.cloudskillsboost.google/course_sessions/1602024/quizzes/329466
 
 
 
