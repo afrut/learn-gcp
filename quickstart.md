@@ -36,7 +36,27 @@ gcloud compute instances list --filter=$VM --format=json |
     sed "s/^.\+\/\([a-z0-9-]*\)$/\1/"
 ```
 
+- Get region from a zone.
+```
+echo $ZONE | sed "s/^\([a-z0-9-]\+\)-[a-z]$/\1/"
+```
+
 - ssh into a virtual machine instance.
 ```
 gcloud compute ssh $VM --zone=$ZONE
+```
+
+- Create a BigQuery dataset with name dataset_name.
+```
+bq mk dataset_name
+```
+
+- Create a GCS bucket bucket-name with a location (-l) and default storage class (-c).
+```
+gsutil mb -c standard -l us-central1 bucket-name
+```
+
+- Execute a query in BigQuery.
+```
+bq query 'SELECT * FROM dataset.table'
 ```

@@ -155,6 +155,14 @@ Solution: https://gist.github.com/Tambunan26/9063521fdf406645aad4527ccd069149
 - Lab: Streaming Data Processing: Publish Streaming Data into PubSub: https://partner.cloudskillsboost.google/course_sessions/1602024/labs/329465
 - Quiz: Serverless Messaging with Pub/Sub: https://partner.cloudskillsboost.google/course_sessions/1602024/quizzes/329466
 
+### Dataflow Streaming Features
+- Module introduction: https://youtu.be/zidkA5fGRLE
+- Streaming data challenges: https://youtu.be/0vbdoFNCUOA
+- Dataflow windowing: https://youtu.be/VlTPy97JAGI
+- Lab Intro: Streaming Data Pipelines: https://youtu.be/Dh3ijECU0jw
+- Lab: Streaming Data Processing: Streaming Data Pipelines: https://partner.cloudskillsboost.google/course_sessions/1602024/labs/329471
+- Quiz: Dataflow Streaming Features: https://partner.cloudskillsboost.google/course_sessions/1602024/quizzes/329472
+
 
 
 # Miscellaneous:
