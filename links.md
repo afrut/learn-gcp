@@ -163,6 +163,14 @@ Solution: https://gist.github.com/Tambunan26/9063521fdf406645aad4527ccd069149
 - Lab: Streaming Data Processing: Streaming Data Pipelines: https://partner.cloudskillsboost.google/course_sessions/1602024/labs/329471
 - Quiz: Dataflow Streaming Features: https://partner.cloudskillsboost.google/course_sessions/1602024/quizzes/329472
 
+### High-throughput BigQuery and Bigtable Streaming Features
+- Module introduction: https://youtu.be/y1rqKiUDU5Y
+- Streaming into BigQuery and visualizing results: https://youtu.be/cY65o175I24
+- Lab intro: Streaming Data Processing: Streaming Analytics and Dashboards: https://youtu.be/nHVnAfJY9Gc
+- Lab: Streaming Data Processing: Streaming Analytics and Dashboards: https://partner.cloudskillsboost.google/course_sessions/1602024/labs/329476
+- Quiz: Streaming Analytics and Dashboards: https://partner.cloudskillsboost.google/course_sessions/1602024/quizzes/329477
+- 
+
 
 
 # Miscellaneous:
