@@ -169,7 +169,11 @@ Solution: https://gist.github.com/Tambunan26/9063521fdf406645aad4527ccd069149
 - Lab intro: Streaming Data Processing: Streaming Analytics and Dashboards: https://youtu.be/nHVnAfJY9Gc
 - Lab: Streaming Data Processing: Streaming Analytics and Dashboards: https://partner.cloudskillsboost.google/course_sessions/1602024/labs/329476
 - Quiz: Streaming Analytics and Dashboards: https://partner.cloudskillsboost.google/course_sessions/1602024/quizzes/329477
-- 
+- High-throughput streaming with Cloud Bigtable: https://youtu.be/EsOREMES9N0
+- Optimizing Cloud Bigtable performance: https://youtu.be/1EQJNWcjMQ8
+- Lab intro: Streaming Data Processing: Streaming Data Pipelines into Bigtable: https://youtu.be/fn3Gr7M7W1g
+- Lab: Streaming Data Processing: Streaming Data Pipelines into Bigtable: https://partner.cloudskillsboost.google/course_sessions/1602024/labs/329481
+- Quiz: High-Throughput Streaming with Cloud Bigtable: https://partner.cloudskillsboost.google/course_sessions/1602024/quizzes/329482
 
 
 
