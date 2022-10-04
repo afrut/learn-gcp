@@ -183,8 +183,18 @@ Solution: https://gist.github.com/Tambunan26/9063521fdf406645aad4527ccd069149
 - Performance considerations: https://youtu.be/uZORbOgO894
 - Lab Intro: Optimizing your BigQuery Queries for Performance: https://youtu.be/wze1gW9cj3k
 - Lab: Optimizing your BigQuery Queries for Performance 2.5: https://partner.cloudskillsboost.google/course_sessions/1602024/labs/329489
-- 
+- Cost considerations: https://youtu.be/bDf0bB6LehY
+- Lab Intro: Creating Date-Partitioned Tables in BigQuery: https://youtu.be/E_gMxA0EgMU
+- Lab: Partitioned Tables in Google BigQuery: https://partner.cloudskillsboost.google/course_sessions/1602024/labs/329492
+- Quiz: BigQuery advanced functionality and performance considerations: https://partner.cloudskillsboost.google/course_sessions/1692147/quizzes/329493
 
+### Course Summary
+- Course Summary: https://youtu.be/aLtax8bujQo
+- Course Resources: https://partner.cloudskillsboost.google/course_sessions/1692147/documents/329495
+
+
+
+# Week 4
 
 
 # Miscellaneous:
