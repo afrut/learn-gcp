@@ -175,6 +175,16 @@ Solution: https://gist.github.com/Tambunan26/9063521fdf406645aad4527ccd069149
 - Lab: Streaming Data Processing: Streaming Data Pipelines into Bigtable: https://partner.cloudskillsboost.google/course_sessions/1602024/labs/329481
 - Quiz: High-Throughput Streaming with Cloud Bigtable: https://partner.cloudskillsboost.google/course_sessions/1602024/quizzes/329482
 
+### Advanced BigQuery Functionality and Performance
+- Module introduction: https://youtu.be/Nelxmhlr2Ug
+- Analytic window functions: https://youtu.be/B6FhilGH6NA
+- GIS functions: https://youtu.be/9K2hTGv3SSc
+- Demo: GIS Functions and Mapping with BigQuery: https://youtu.be/49qbPg71f3c
+- Performance considerations: https://youtu.be/uZORbOgO894
+- Lab Intro: Optimizing your BigQuery Queries for Performance: https://youtu.be/wze1gW9cj3k
+- Lab: Optimizing your BigQuery Queries for Performance 2.5: https://partner.cloudskillsboost.google/course_sessions/1602024/labs/329489
+- 
+
 
 
 # Miscellaneous:
