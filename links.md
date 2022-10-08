@@ -1,5 +1,9 @@
-# Create and Manage Cloud Resources Quest
+# Quest: Create and Manage Cloud Resources
 Solution: https://gist.github.com/Tambunan26/9063521fdf406645aad4527ccd069149
+
+# Quest: Perform Foundational Data, ML, and AI Tasks in Google Cloud
+- Lab: Vertex AI: Qwik Start: https://partner.cloudskillsboost.google/focuses/21100?parent=catalog
+
 
 
 # Week 2
@@ -200,4 +204,5 @@ Solution: https://gist.github.com/Tambunan26/9063521fdf406645aad4527ccd069149
 # Miscellaneous:
 Google Cloud Product Cheat Sheet: https://googlecloudcheatsheet.withgoogle.com/
 BigQuery public dataset project name: bigquery-public-data
-Course Demos; https://github.com/gstripling/training-data-analyst-1/tree/master/courses/data-engineering/demos
+Course Demos: https://github.com/gstripling/training-data-analyst-1/tree/master/courses/data-engineering/demos
+Google Cloud Platfor Repository: https://github.com/GoogleCloudPlatform/training-data-analyst
