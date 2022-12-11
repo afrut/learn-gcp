@@ -1,23 +1,23 @@
 Exam Guide and Registration:
-- Main Link: https://cloud.google.com/certification/data-engineer
-- Exam Guide: https://cloud.google.com/certification/guides/data-engineer
-- Sample Questions: https://docs.google.com/forms/d/e/1FAIpQLSfkWEzBCP0wQ09ZuFm7G2_4qtkYbfmk_0getojdnPdCYmq37Q/viewform
+  - Main Link: https://cloud.google.com/certification/data-engineer
+  - Exam Guide: https://cloud.google.com/certification/guides/data-engineer
 
-Learning resources:
-  - Free
-    - Google Learning: https://www.cloudskillsboost.google/paths/16
-    - Google Learning: https://cloud.google.com/training/data-engineering-and-analytics#data-engineer-learning-path
-    - Google Cloud Data Engineer Course: https://www.coursera.org/professional-certificates/gcp-data-engineering
-    - Google Cloud Data Engineering, Big Data, and Machine Learning Specialization Course: https://www.coursera.org/specializations/gcp-data-machine-learning#about
+Learning resources
+  - Courses
+    - cloudskillsboost: https://www.cloudskillsboost.google/paths/16
+    - coursera: https://www.coursera.org/professional-certificates/gcp-data-engineering
     - Google Data Engineering Quest: https://www.cloudskillsboost.google/quests/25?utm_source=gcp&utm_medium=site&utm_campaign=certification
-    - Overview Sheet: https://github.com/xg1990/GCP-Data-Engineer-Study-Guide/blob/master/GCP%20Data%20Engineer.pdf
-    - Mock Exam: https://www.examtopics.com/exams/google/professional-data-engineer/view/
-    - Linux Academy Data Dossier Summary: https://linuxacademy.com/cp/modules/view/id/208
-    - Sample Questions, Answers, Links, Best Practices: https://towardsdatascience.com/how-i-passed-google-professional-data-engineer-exam-in-2020-2830e10658b6
-    - Best Practices Links: https://www.crystalloids.com/news/5-tips-to-pass-the-google-cloud-professional-data-engineer-certification-exam
+    - acloudguru: https://acloudguru.com/course/google-certified-professional-data-engineer
+    - testpreptraining Tutorials: https://www.testpreptraining.com/tutorial/?s=GCP+professional+data+engineer
+  - References
     - Exam Topics with Links: https://www.testpreptraining.com/tutorial/google-cloud-certified-professional-data-engineer-tutorial/
-    - Questions and Answers: https://docs.google.com/document/d/1HlnMZ67aSPrsSyrjElq7Ba16_OvXOjmP6i8lmVtR2e8/edit#heading=h.h9g5czxzwp8x
-  - Paid
-    - Third Party Course: https://acloudguru.com/course/google-certified-professional-data-engineer
-    - Book: https://www.wiley.com/en-us/Official+Google+Cloud+Certified+Professional+Data+Engineer+Study+Guide-p-9781119618454
-    - Practice Exam: https://www.testpreptraining.com/google-professional-data-engineer-questions
+    - The Cloud Girl: https://thecloudgirl.dev/sketchnote.html
+    - Official Study Guide: https://www.wiley.com/en-us/Official+Google+Cloud+Certified+Professional+Data+Engineer+Study+Guide-p-9781119618454
+  - Practice Questions
+    - Offical: https://docs.google.com/forms/d/e/1FAIpQLSfkWEzBCP0wQ09ZuFm7G2_4qtkYbfmk_0getojdnPdCYmq37Q/viewform
+    - udemy: https://www.udemy.com/course/slg-google-cloud-professional-data-engineer-practice-tests/
+    - whizlabs: https://www.whizlabs.com/blog/google-cloud-professional-data-engineer-exam-questions/
+    - testpreptraining sample questions: https://www.testpreptraining.com/tutorial/googlegcp-professional-data-engineer-sample-questions/
+    - testpreptraining: https://www.testpreptraining.com/google-professional-data-engineer-questions
+  - testpreptraining results
+    - https://www.testpreptraining.com/index.php?route=account/test/result&quiz_id=4122466
