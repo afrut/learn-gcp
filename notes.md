@@ -25,7 +25,7 @@
 - Compute Engine: Managed service for creating virtual machines.
 - Google Kubernetes Engine: A managed service for orchestrating containers.
 
-## Access Management
+## Access Management and Security
 - IAM: Service authenticating identities and authorizing access to various resources.
 - Cloud Key Management Service: Manage encryption keys.
 - Secret Manager: Store API keys, passwords, certificates and other sensitive data.
@@ -72,6 +72,7 @@
 - Network models are used to model graph-like structures in graph databases.
 
 ### BigQuery
+- Uses a compressed columnar data model.
 - **BI Engine** caches SQL queries from any source in-memory to improve query performance.
 - BigQuery allows querying external data sources. These queries are used to create **external tables**.
     - Allowable formats for creating external tables:
@@ -87,9 +88,16 @@
     - bigquery.admin
     - bigquery.dataEditor
 - Amount of data stored and frequency of refresh can increase costs of materialized views.
+- Best practices:
+    - Avoid SELECT *. Get only columns that you need.
+    - Use LIMIT with clustered tables. This can reduce the amout of data scanned.
+    - In a partitioned table, filter on the partitioned column.
+    - In a clustered table, filter on the clustered column.
+- `--dry-run` is used to estimate the number of bytes scanned.
 
 ### BigTable
 - Supports lookup only through a single row key.
+- Based on sparse multidimensional arrays. **Cassandra** is another database based on this.
 - Put incrementing values towards the end of the row key to avoid hot spotting.
 - Put columns frequently used together in a **column family**.
 - Keep storage utilization per node below 60% for low latency applications.
@@ -122,7 +130,7 @@
 - **Indexes** are created to support different query patterns.
 - Automatically creates atomic value ascending and descending indexes.
 - Composite indexes are made up of two or more values and are created manually.
-- **MongoDB** is another document database.
+- **MongoDB** is another popular document database.
 - `gcloud datastore export gs://some-bucket --async` creates backups and returns immediately while the backup job runs.
 
 ### Cloud Spanner
@@ -145,6 +153,10 @@
 ### Cloud Storage
 - **Transfer Service** is designed to load terabytes of data using scheduled jobs and is well suited for transferring data from other public clouds.
 - **Transfer Appliance** is designed for large data loads but requires attaching a storage device to the source system's network and so suitable only when you have physical access to the source system network.
+- **Uniform bucket level access** uses IAM to apply permissions to buckets or groups of objects. This is the recommended method.
+- **Fine-grained access control** is a legacy method based on access control lists. Not recommended.
+- **Signed URLs** are used for time-limited access to an object.
+- **Signed policy** documents are used to control what can be uploaded to a bucket.
 - Retention policies specify how long files should be kept.
 - Retention policy locks prevent changes to the retention period.
 - Lifecycle policies can be used to delete data. They are triggered when an object meets certain conditions. These conditions are:
@@ -165,6 +177,7 @@
     - Nearline for data accessed at most once every 30 days
     - Coldline for data accessed at most once every 90 days
     - Archive for data accessed at most once every 365 days
+    - Data can be redundant across regions if stored in **multi-regions** or **dual-regions**.
 - `gsutil` is the command-line program to load data into Cloud Storage
 - `gsutil rsync` is a command used to sync two buckets/directories.
 
@@ -172,23 +185,28 @@
 ## Transformation
 
 ### Dataproc
+- The number of master nodes cannot be changed once a cluster has been created. The cluster will have to be re-created.
 - `FetchFailedException` is an error that occurs when shuffle data is lost, likely due to a node being decommissioned.
 - When creating a cluster, `dataproc:dataproc.scheduler.max-concurrent-jobs` can be set to limit the number of concurrent jobs.
 - **HDFS** is the Hadoop Distributed File System. It's a file system whose data is stored in a cluster of machines.
 - Instead of using HDFS, use Cloud Storage for storing files, which allows data to be accessed even when the cluster is shut down.
+- Use **ephemeral** clusters where possible. It is recommended to configure a cluster for a specific type of job, spin up the cluster, run the job, and stop the cluster. This way, cluster configuration can be optimized for the specific job and users can save on costs by not having clusters with low usage.
 - Use no more than 30% of preemptible VMs for secondary workers.
 - `roles/dataproc.editor` will provide permissions to stop clusters, initiate workflow templates, and other common user tasks.
 
 ### Dataflow
+- Based on the **Apache Beam** open-source project.
 - Because streaming data can be unbounded, a **window** is specified to bound data to be analyzed.
     - sliding (hopping): Every 5 minutes, compute the average in the last hour. Can overlap.
     - fixed (tumbling): Every hour, compute the average. Cannot overlap.
     - session: For the time that a user was active, compute the average. Start and end intervals depend on external events.
+- **Apache Beam** is analogous to this service. It implements and Apache Beam runner.
 - **Watermark** is a time after the end time of a window after which no more late-arriving data is accepted into the window's computation.
 - A **PCollection** represents key-value pair data in a distributed fashion.
 - A **side input** is an additional input that your `DoFn` can access each time it processes an element in the input PCollection.
 - A **custom window** is created using WindowFn functions to implement windows based on data-driven gaps.
 - **Flexors** or flexible resource scheduling reduces batch processing costs using scheduling techniques and pre-emptible VMs.
+- **--maxNumWorkers** is used to limit the resources used by a pipeline.
 - Metrics:
     - **job/system_lag** is the maximum duration that an item has been waiting in the pipeline.
     - **job/data_watermark_age** is the age of the most recent item that's been fully processed by the pipeline.
@@ -204,6 +222,7 @@
 
 ### Google Kubernetes Engine (GKE)
 - **deployment.yaml** files are used to configure deployments.
+- `kubectl scale deployment --replicas` will scale a deployment to 4 replicas.
 
 <!-- ------------------------------------------------------------ -->
 ## Networking
@@ -217,9 +236,15 @@
 - Logs can be routed to other sinks like Cloud Storage, Pub/Sub, and BigQuery.
 
 <!-- ------------------------------------------------------------ -->
-## Access Management
+## Access Management and Security
+- TODO: encryption of data at rest at the hardware, infrastructure, and platform levels
+- An **organization** can contain many **folders**. A folder can contain many **projects**. These inherit policies hierarchically.
+- Billing of services occurs at the project level.
 
 ### IAM
+- **Authentication** is proving who you say you are.
+- **Authorization** is defining what you can and cannot do.
+- **Google Workspace Identity** should be used to identify human users.
 - **Service accounts** are identities that represent user-built programs and other cloud services.
 - **User accounts** are identities that represent human users.
 - A **principal** is an identity or groups of identities that will access and use resources.
@@ -254,6 +279,7 @@
 - **Accuracy** is a classification metric. Of all the predictions, how many are actually true?
 - **Precision** is a classification metric. Of all the predictions that are true, how many are actually true?
 - **Recall** is a classification metric. Of all the actual instances that are true, how many did the model predict as true?
+- **F-score** is a classification metric the harmonic mean precision and recall.
 - **Cloud TPUs** are hardware accelerators used in training deep learning models.
 - **Feature crosses** is a way to create synthetic features from existing features (kind of like multiplying two features in linear regression). It is useful when the data set has few features but many instances.
 - **Gradient descent** is a way to find the minimum of a function by moving in the direction where the derivative is most negative (steep).
@@ -286,14 +312,18 @@
 - Blended data sources combine data from multiple sources in the same visualization.
 
 ### Pub/Sub
-- At least once delivery guarantee.
+- Typically used as the first service to ingest high-volume streaming data.
+- **Apache Kafka** is an open-source alternative to this service.
+- A **topic** is an append-only log that producers can publish to and consumers can subscribe to.
+- **At least once** delivery guarantee. Data will be delivered to at least one consumer in every subscription to a topic.
+- Keeps data for 7 days by default. This retention period can be changed.
+- Once a consumer for each subscription to a topic has acknowledged receipt of a message, the message will be deleted from storage.
 - Can deliver data out of order and can deliver duplicates. Use in conjunction with Dataflow if you need data to be in order and to deduplicate.
-- subscription/num_undelivered_messages is a metric that indicates how well subscribers are keeping up with data being ingested.
+- **subscription/num_undelivered_messages** is a metric that indicates how well subscribers are keeping up with data being ingested.
 - Define a schema during topic creation to ensure  to ensure messages are written with a standard structure.
 - Supports Protocol Buffer (ProtoBuf) and Avro formats for schema definition.
 - **Thrift** is an alternative to ProtoBuf.
 - **Parquet** is an open-source column-oriented format used in Hadoop systems.
-- A **topic** is an append-only log that producers can publish to and consumers can subscribe to.
 
 ### Resource Manager
 - Resources in an organization can be restricted to certain locations by setting a Resource Location Restriction policy.
@@ -320,7 +350,6 @@
 - Cloud SQL
     - strong consistency
     - ACID
-    - read replicas
 - Cloud Spanner
     - strong consistency
     - ACID
