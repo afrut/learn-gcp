@@ -29,7 +29,7 @@
 - IAM: Service authenticating identities and authorizing access to various resources.
 - Cloud Key Management Service: Manage encryption keys.
 - Secret Manager: Store API keys, passwords, certificates and other sensitive data.
-- Cloud Identity: TODO
+- Cloud Identity: Manage authentication of identities with multi-factor authentication (MFA) and single sign-on (SSO).
 
 ## Logging
 - Cloud Monitoring: Monitor and display custom log-based metrics or metrics from different services.
@@ -45,12 +45,15 @@
 - Text-to-Speech API converts text to spoken words.
 - Vertex AI: Train, deploy, and request predictions from models. Custom and automatic training through AutoML are available.
 
+# Networking and Connectivity
+- Cloud VPN: Connects a VPC network to another network.
+- Cloud Interconnect: Provides low-latency and high-availability connections from on-premises networks to a VPC networks in the cloud for data transfer.
+- Cloud Router: Dynamically change routes between VPC network and peer network.
+
 # Misc
 - Data Catalog: Service for metadata and data discovery.
 - Data Loss Prevention (DLP): Service to discover and manage sensitive personal data like names, email, addresses, etc.
 - Looker Studio/Data Studio: Build customizable reports and dashboards.
-- Virtual Private Cloud (VPC): TODO
-- Network Connectivity: TODO
 - Cloud Scheduler: Run jobs at regular intervals.
 - Cloud Composer: Managed service for orchestrating different workflows using Apache Airflow.
 - Cloud CDN: A content delivery network service designed to store copies of data close to end users.
@@ -199,6 +202,10 @@
 
 ### Dataproc
 - The number of master nodes cannot be changed once a cluster has been created. The cluster will have to be re-created.
+- **Secondary workers** are machines that are used only for processing and not storage.
+- Clusters can be created on a **sole tenant node** to keep the cluster's VMs physically separate from VMs in other projects. This addresses security and compliance concerns.
+- An **Autoscaling Policy** can be used to increase the size of the cluster by adding nodes.
+- In addition to the boot disk, **SSDs or solid state drives** can be added to VMs to improve read/write performance.
 - `FetchFailedException` is an error that occurs when shuffle data is lost, likely due to a node being decommissioned.
 - When creating a cluster, `dataproc:dataproc.scheduler.max-concurrent-jobs` can be set to limit the number of concurrent jobs.
 - **HDFS** is the Hadoop Distributed File System. It's a file system whose data is stored in a cluster of machines.
@@ -206,6 +213,8 @@
 - Use **ephemeral** clusters where possible. It is recommended to configure a cluster for a specific type of job, spin up the cluster, run the job, and stop the cluster. This way, cluster configuration can be optimized for the specific job and users can save on costs by not having clusters with low usage.
 - Use no more than 30% of preemptible VMs for secondary workers.
 - `roles/dataproc.editor` will provide permissions to stop clusters, initiate workflow templates, and other common user tasks.
+- `gcloud dataproc clusters update --num-secondary-workers` updates the number of secondary workers in a node.
+- `gcloud clusters dataproc create --gce-pd-kms-key` specifies the key used to protect the cluster.
 
 ### Dataflow
 - Based on the **Apache Beam** open-source project.
@@ -237,6 +246,8 @@
 - A **Managed Instance Groups** (MIG) is a group of virtual machines that were created based on a template. Machines are all of the same type. Supports autoscaling.
 - An **Unmanaged instance group** is a group of virtual machines that were not created based on a template. Machines can be of different types. Does NOT support autoscaling.
 - **Shielded VMs** offer verifiable integrity of your Compute Engine VM instances, so you can be confident your instances haven't been compromised by boot- or kernel-level malware or rootkits.
+- **Pre-emptible VMs** are virtual machines that are excess capacity. They are available at discounts but can be stopped (pre-empted) when CE needs to reclaim capacity.
+- A **sole-tenant** node is a server that is dedicated to hosting your project's VMs only.
 
 ### Cloud Functions
 - `gcloud functions deploy` is used to create a cloud function.
@@ -247,7 +258,16 @@
 
 <!-- ------------------------------------------------------------ -->
 ## Networking
+- **Virtual Private Cloud (VPC) networks** is a virtual version of a physical network, implemented inside of Google's production network, using Andromeda.
 - **DNS A records** associate an IP address with a domain name.
+
+### Cloud VPN
+- Used to connect two networks, one of which must be a VPC network in the cloud.
+
+### Cloud Interconnect
+-  Provides low latency, high availability connections that enable you to reliably transfer data between your on-premises and Google Cloud Virtual Private Cloud (VPC) networks.
+- ***Dedicated Interconnect** provides a direct physical connection between your on-premises network and Google's network.
+- ***Partner Interconnect** provides connectivity between your on-premises and VPC networks through a supported service provider.
 
 <!-- ------------------------------------------------------------ -->
 ## Logging
@@ -263,9 +283,13 @@
 
 <!-- ------------------------------------------------------------ -->
 ## Access Management and Security
-- TODO: encryption of data at rest at the hardware, infrastructure, and platform levels
 - An **organization** can contain many **folders**. A folder can contain many **projects**. These inherit policies hierarchically.
 - Billing of services occurs at the project level.
+- Data in GCP is encrypted in transit and at rest automatically. Google also automatically handles the management of these encryption keys.
+- Encryption of data at rest occurs at multiple levels:
+    - **Platform level** uses AES256 and AES128 encryption
+    - **Infrastructure level** uses AES256 encryption
+    - **Hardware level** uses AES256 and AES128 encryption
 
 ### IAM
 - **Authentication** is proving who you say you are.
@@ -278,12 +302,12 @@
 - **Roles** are collections of permissions.
 - **Role bindings** grant roles to principals, allowing principals to execute operations authorized by the role's permissions.
 - **Policies** are collections of role bindings.
+- **Service account keys** can be used to authenticate service accounts. They key pair is created; public key is stored in IAM and the private key is stored elsewhere for the application to use. When a request is made using the private key, IAM uses the public key to verify the private key.
 - According to the **principle of least privilege**, grant only the necessary permissions to users and service accounts.
 - To authorize a principal to do (x, y, z), a role is created that contains permissions for (x, y, z). This role is then granted to the principal through a policy binding.
 - A GCP service Service1 that is not authorized to use another GCP service Service2 indicates that Service1 must be granted the Service Account User role.
 
 ### Cloud Key Management Service (KMS)
-- Data in GCP is encrypted in transit and at rest automatically. Google also automatically handles the management of these encryption keys.
 - **Customer Managed Encryption Keys (CMEKs)** allow customers to manage their own keys in GCP.
 - **Customer Supplied Encryption Keys (CSEKs)** allow customers to supply their own encryption keys.
 - **Cloud External Key Manager (EKM)** facilitates the use of keys that are already managed by a key manager not in GCP.
@@ -374,8 +398,12 @@
 
 ### Pub/Sub
 - Typically used as the first service to ingest high-volume streaming data.
-- **Apache Kafka** is an open-source alternative to this service.
 - A **topic** is an append-only log that producers can publish to and consumers can subscribe to.
+- To access the data in Pub/Sub, an application uses a **subscription**. A topic can have multiple subscriptions but a subscription can only be for one topic.
+    - In a **push subscription**, Pub/Sub accesses an endpoint to send data. Used when multiple topics need to be processed by the same webhook.
+    - In a **pull subscription**, the application sends a request to Pub/Sub to access the data. This is used when efficiency and throughput of message processing is critical.
+    - In a **BigQuery subscription**, data is written to an existing BigQuery table as they are received.
+- **Apache Kafka** is an open-source alternative to this service.
 - **At least once** delivery guarantee. Data will be delivered to at least one consumer in every subscription to a topic.
 - Keeps data for 7 days by default. This retention period can be changed.
 - Once a consumer for each subscription to a topic has acknowledged receipt of a message, the message will be deleted from storage.
@@ -394,28 +422,3 @@
 <!-- ------------------------------------------------------------------------------------------ -->
 # Useful Links
 - Data engineering code demos: https://github.com/GoogleCloudPlatform/training-data-analyst/tree/master/courses/data-engineering/demos
-
-<!-- ------------------------------------------------------------------------------------------ -->
-# Learn About
-- Dataproc
-    - pre-emptible VMs
-    - node group, sole-tenant node groups
-    - autoscaling
-    - high-availability SSD
-    - secondary workers
-    - gcloud dataproc clusters update --num-secondary-workers
-    - gcloud clusters dataproc create --gce-pd-kms-key
-- Firestore
-    - Indexes
-    - Entities
-- IAM
-    - public/private service account keys
-- Network Connectivity
-    - Cloud VPN
-    - Cloud Interconnect
-        - Dedicated Interconnect
-        - Partner Interconnect
-    - Cloud Router
-    - Partner Interconnect
-- Pub/Sub
-    - pull vs push subscription
