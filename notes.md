@@ -68,9 +68,15 @@
 
 <!-- ------------------------------------------------------------------------------------------ -->
 # Notes
+- **High availability** refers to the ability of a service to fail over to another instance in case of failure.
+- **Scalability** refers to the ability of a service to handle variable amounts of workload usually by adding machines.
+- A **geographic area** contains multiple **regions**. A region contains multiple **zones**.
 
 <!-- ------------------------------------------------------------ -->
 ## Storage
+- Decision tree for selecting storage solutions:\
+    ![storage solution decision tree](./_img/choosing_a_database_1.PNG "Selecting the storage solutions")
+    ![storage solution decision tree](./_img/choosing_a_database_2.PNG "Selecting the storage solutions")
 - Denormalized relational data models: star and snowflake schemas
 - Network models are used to model graph-like structures in graph databases.
 - ACID is a set of properties of database transactions intended to guarantee data validity despite errors, power failures, and other mishaps.
@@ -167,15 +173,32 @@
 - **Read replicas** can be used to improve the performance of the database by off-loading read operations from the primary instance.
 
 ### Cloud Storage
+- Serves as a **data lake** for unstructured data.
+- Stores data as **objects** in **buckets**. Buckets are associated with projects.
+    - Bucket name is globally-unique and are associated with a physical location.
+        - Can be multi-region.
+        - Cannot change location or name after creation but data can be moved to another bucket.
+        - Name can be reused once the bucket is deleted.
+    - Buckets cannot be nested.
+    - There are no filepaths. However, objects can be named to simulate a filepath as in gs://path/to/object.
+        - Moving to a different "filepath" is just renaming the file.
+- Redundancy and replication:
+    - Redundant in at least 2 zones in a region area.
+    - Multi-region and dual-region buckets are geo-redundant; stored in at least 2 different physical locations separated by 100 miles.
+        - Default replication provides geo-redundancy in 1 hour.
+        - Turbo replication provides geo-redundancy in 15 minutes.
+- Co-locating VMs and buckets in the same region can improve performance.
 - **Transfer Service** is designed to load terabytes of data using scheduled jobs and is well suited for transferring data from other public clouds.
 - **Transfer Appliance** is designed for large data loads but requires attaching a storage device to the source system's network and so suitable only when you have physical access to the source system network.
 - **Uniform bucket level access** uses IAM to apply permissions to buckets or groups of objects. This is the recommended method.
 - **Fine-grained access control** is a legacy method based on access control lists. Not recommended.
 - **Signed URLs** are used for time-limited access to an object.
 - **Signed policy** documents are used to control what can be uploaded to a bucket.
-- Retention policies specify how long files should be kept.
-- Retention policy locks prevent changes to the retention period.
-- Lifecycle policies can be used to delete data. They are triggered when an object meets certain conditions. These conditions are:
+- **Retention policies** specify how long files should be kept.
+- **Retention policy** locks prevent changes to the retention period.
+- **Object versioning** enables the retention of older versions of a file as noncurrent when it is replaced or deleted.
+- #*NUMBER* appended at the end of a resource name indicates a specific generation of the object. **#0** refers to the most recent version.
+- **Lifecycle policies** can be used to delete data. They are triggered when an object meets certain conditions. These conditions are:
     ```
     age
     createdBefore
@@ -397,6 +420,7 @@
     - The data in the cache can be old. Refresh the cache if new data is not being displayed.
 
 ### Pub/Sub
+- TODO: read documentation
 - Typically used as the first service to ingest high-volume streaming data.
 - A **topic** is an append-only log that producers can publish to and consumers can subscribe to.
 - To access the data in Pub/Sub, an application uses a **subscription**. A topic can have multiple subscriptions but a subscription can only be for one topic.
