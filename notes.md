@@ -71,12 +71,13 @@
 - **High availability** refers to the ability of a service to fail over to another instance in case of failure.
 - **Scalability** refers to the ability of a service to handle variable amounts of workload usually by adding machines.
 - A **geographic area** contains multiple **regions**. A region contains multiple **zones**.
+- **Exponential backoff** is a retrying technique where each subsequent attempt to access a failed service waits exponentially longer to avoid an unnecessary number of requests.
 
 <!-- ------------------------------------------------------------ -->
 ## Storage
 - Decision tree for selecting storage solutions:\
-    ![storage solution decision tree](./_img/choosing_a_database_1.PNG "Selecting the storage solutions")
-    ![storage solution decision tree](./_img/choosing_a_database_2.PNG "Selecting the storage solutions")
+    ![storage solution decision tree](./_img/choosing_a_database_1.png "Selecting the storage solutions")
+    ![storage solution decision tree](./_img/choosing_a_database_2.png "Selecting the storage solutions")
 - Denormalized relational data models: star and snowflake schemas
 - Network models are used to model graph-like structures in graph databases.
 - ACID is a set of properties of database transactions intended to guarantee data validity despite errors, power failures, and other mishaps.
@@ -97,7 +98,7 @@
         - Datastore export files
         - Firestore export files
         - ORC
-        - Parquet 
+        - Parquet
 - Pre-defined roles:
     - bigquery.dataOwner
     - bigquery.admin
@@ -109,6 +110,7 @@
     - In a **partitioned** table, filter on the partitioned column.
     - In a **clustered** table, filter on the clustered column. Clustering a table requires partitioning it first.
     - Where applicable, use repeated and nested fields to pre-join and co-locate data.
+    - To restrict access to certain columns in a table, a view can be created and saved in a different dataset with read-only access.
 - `--dry-run` is used to estimate the number of bytes scanned.
 
 ### Bigtable
@@ -229,12 +231,13 @@
 - Clusters can be created on a **sole tenant node** to keep the cluster's VMs physically separate from VMs in other projects. This addresses security and compliance concerns.
 - An **Autoscaling Policy** can be used to increase the size of the cluster by adding nodes.
 - In addition to the boot disk, **SSDs or solid state drives** can be added to VMs to improve read/write performance.
+- The **Cloud Storage connector** is an open source Java library that lets you run Apache Hadoop or Apache Spark jobs directly on data in Cloud Storage.
+- Instead of using HDFS, use Cloud Storage for storing files, which allows data to be accessed even when the cluster is shut down.
 - `FetchFailedException` is an error that occurs when shuffle data is lost, likely due to a node being decommissioned.
 - When creating a cluster, `dataproc:dataproc.scheduler.max-concurrent-jobs` can be set to limit the number of concurrent jobs.
 - **HDFS** is the Hadoop Distributed File System. It's a file system whose data is stored in a cluster of machines.
-- Instead of using HDFS, use Cloud Storage for storing files, which allows data to be accessed even when the cluster is shut down.
 - Use **ephemeral** clusters where possible. It is recommended to configure a cluster for a specific type of job, spin up the cluster, run the job, and stop the cluster. This way, cluster configuration can be optimized for the specific job and users can save on costs by not having clusters with low usage.
-- Use no more than 30% of preemptible VMs for secondary workers.
+- The number of preemptible workers should be less than **50%** of total workers in the cluster.
 - `roles/dataproc.editor` will provide permissions to stop clusters, initiate workflow templates, and other common user tasks.
 - `gcloud dataproc clusters update --num-secondary-workers` updates the number of secondary workers in a node.
 - `gcloud clusters dataproc create --gce-pd-kms-key` specifies the key used to protect the cluster.
@@ -245,15 +248,24 @@
     - sliding (hopping): Every 5 minutes, compute the average in the last hour. Can overlap.
     - fixed (tumbling): Every hour, compute the average. Cannot overlap.
     - session: For the time that a user was active, compute the average. Start and end intervals depend on external events.
+    - single **global window**: For data that is bounded and to be analyzed in a single window.
 - **Apache Beam** is analogous to this service. It implements and Apache Beam runner.
 - **Watermark** is a time after the end time of a window after which no more late-arriving data is accepted into the window's computation.
 - A **PCollection** represents key-value pair data in a distributed fashion.
 - A **side input** is an additional input that your `DoFn` can access each time it processes an element in the input PCollection.
 - A **custom window** is created using WindowFn functions to implement windows based on data-driven gaps.
-- **FlexRS** or flexible resource scheduling reduces batch processing costs using scheduling techniques and pre-emptible VMs.
+- **FlexRS** or flexible resource scheduling reduces batch processing costs using scheduling techniques and preemptible VMs.
 - Runs distributed jobs on worker virtual machines. These machines use persisten disks to store window state and shuffle storage.
 - Instead of running distributed jobs on VMs, the backend service **Streaming Engine** can be used to run the same distributed jobs with better autoscaling and reduced resource usage.
 - **Dataflow Shuffle** is a backend service that can offload shuffle processing (GroupByKey, CoGroupByKey, Combine) from VMs. Only available in batch jobs. Used by batch jobs by default.
+- **Cancel** shuts down a pipeline. **Drain** stops the flow of new data but allows current data to complete processing.
+- Core Beam transforms:
+    - ParDo: generic parallel processing
+    - GroupByKey: aggregate values by key
+    - CoGroupByKey: relational join
+    - Combine: combine data like summing
+    - Flatten: merge multiple PCollections into a single PCollection; like creating a single list from a list of lists
+    - Partition: split a PCollection
 - Metrics:
     - **job/system_lag** is the maximum duration that an item has been waiting in the pipeline.
     - **job/data_watermark_age** is the age of the most recent item that's been fully processed by the pipeline.
@@ -266,10 +278,22 @@
 ## Compute
 
 ### Compute Engine (CE)
-- A **Managed Instance Groups** (MIG) is a group of virtual machines that were created based on a template. Machines are all of the same type. Supports autoscaling.
-- An **Unmanaged instance group** is a group of virtual machines that were not created based on a template. Machines can be of different types. Does NOT support autoscaling.
-- **Shielded VMs** offer verifiable integrity of your Compute Engine VM instances, so you can be confident your instances haven't been compromised by boot- or kernel-level malware or rootkits.
-- **Pre-emptible VMs** are virtual machines that are excess capacity. They are available at discounts but can be stopped (pre-empted) when CE needs to reclaim capacity.
+- An **instance** is a virtual machine (VM).
+- A **Managed Instance Group** (MIG) is a group of virtual machines that were created based on a template. Machines are all of the same type. Supports autoscaling.
+- An **unmanaged instance group** can contain machines of different types. Does NOT support autoscaling.
+- An **instance template** is a resource that you can use to create virtual machine (VM) instances and managed instance groups (MIGs).
+- A **machine image** is a resource that stores all the configuration, metadata, permissions, and data from multiple disks of a virtual machine (VM) instance.
+- **Snapshots** incrementally back up data from your persistent disks. After you create a snapshot to capture the current state of the disk, you can use it to restore that data to a new disk.
+- A **custom image** is a boot disk image that you own and control access to.
+- When to use images vs snapshots vs templates:\
+    ![When to use images vs snapshots vs templates](./_img/ce_images_snapshots_templates.png "Selecting the storage solutions")
+    - Instance templates can only be used to create the VMs. They do not specify what is installed on the boot disk or what data is present on disks.
+    - On the other hand, snapshots apply only to disks. They do not contain configurations for VMs.
+    - Images store the state of the boot disk.
+    - Custom images can be created to store configuration work and used as a base image for replicating VMs.
+    - Machine images are used to completely clone a VM.
+- **Shielded VMs** offer verifiable integrity of your VM instances, so you can be confident your instances haven't been compromised by boot- or kernel-level malware or rootkits.
+- **Preemptible VMs** are virtual machines that are excess capacity. They are available at discounts but can be stopped (preempted) when CE needs to reclaim capacity.
 - A **sole-tenant** node is a server that is dedicated to hosting your project's VMs only.
 
 ### Cloud Functions
@@ -353,7 +377,7 @@
 - **Regularization** is a collection of techniques that prevent overfitting.
     - **L2 or Ridge regularization** prevents large coefficients.
     - **L1 or Lasso regularization** can drive the coefficients of features that have no predictive value to 0.
-    - **Dropout** is disabling certain neurons in deep learning during training to prevent overfitting.
+    - In deep learning, **dropout** is randomly ignoring some neurons during training to prevent overfitting.
 - **Feature crosses** is a way to create synthetic features from existing features (kind of like multiplying two features in linear regression). It is useful when the data set has few features but many instances or when a model is underfitting due to lack of features.
 - **Gradient descent** is a way to find the minimum of a function by moving in the direction where the derivative is most negative (steep).
 - **Backpropagation** is a widely used algorithm for training neural networks that uses the error and rate of change of the error to calculate weight adjustments. Gradient descent is often used to calculate these weight adjustments.

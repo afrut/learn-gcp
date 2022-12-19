@@ -3,9 +3,23 @@
 - Course Demos: https://github.com/gstripling/training-data-analyst-1/tree/master/courses/data-engineering/demos
 - GCP Repository: https://github.com/GoogleCloudPlatform/training-data-analyst
 
+## Compute
+### Compute Engine
+    - Documentation: https://cloud.google.com/compute/docs/instances
+    - When to use images vs snapshots vs templates: https://cloud.google.com/compute/docs/machine-images#when-to-use
+
 ## Storage
 - Cloud Storage: https://cloud.google.com/storage/docs/introduction
 - Choosing databases: https://cloud.google.com/blog/topics/developers-practitioners/your-google-cloud-database-options-explained
+
+### BigQuery
+    - Documentation: https://cloud.google.com/bigquery/docs/introduction
+    - BigQuery best practices: https://cloud.google.com/bigquery/docs/best-practices-performance-patterns
+
+## Transform
+### Dataflow
+    - Documentation: https://cloud.google.com/dataflow/docs/about-dataflow
+    - Core Beam transforms: https://beam.apache.org/documentation/programming-guide/#core-beam-transforms
 
 # CloudSkillsBoost Links
 
