@@ -21,3 +21,4 @@ Learning resources
     - testpreptraining: https://www.testpreptraining.com/google-professional-data-engineer-questions
   - testpreptraining results
     - https://www.testpreptraining.com/index.php?route=account/test/result&quiz_id=4122466
+    - https://www.testpreptraining.com/index.php?route=account/test/result&quiz_id=4176845

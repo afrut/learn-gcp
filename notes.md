@@ -43,7 +43,7 @@
 - Kubeflow: An open source tool for running ML pipelines in Kubernetes.
 - Speech-to-Text API converts spoken words to written words.
 - Text-to-Speech API converts text to spoken words.
-- Vertex AI: Train, deploy, and request predictions from models. Custom and automatic training through AutoML are available.
+- Vertex AI: Train, deploy, and request predictions from models. Custom and automatic training through AutoML are available. Previously AI Platform and Cloud ML Engine.
 
 # Networking and Connectivity
 - Cloud VPN: Connects a VPC network to another network.
@@ -103,14 +103,18 @@
     - bigquery.dataOwner
     - bigquery.admin
     - bigquery.dataEditor
+- Principals can be granted roles on a dataset or table level.
 - Amount of data stored and frequency of refresh can increase costs of materialized views.
 - Best practices:
     - Avoid SELECT *. Get only columns that you need.
     - Use LIMIT with clustered tables. This can reduce the amout of data scanned.
     - In a **partitioned** table, filter on the partitioned column.
     - In a **clustered** table, filter on the clustered column. Clustering a table requires partitioning it first.
-    - Where applicable, use repeated and nested fields to pre-join and co-locate data.
+    - Where applicable, use repeated and nested fields to denormalize, pre-join, and co-locate data.
     - To restrict access to certain columns in a table, a view can be created and saved in a different dataset with read-only access.
+    - Use the **ROW_NUMBER** window function to deduplicate data.
+    - Perform **broadcast joins** first by having a large table as the left side of the JOIN and a small one on the right side of the JOIN. A broadcast join sends all the data in the smaller table to each slot that processes the larger table.
+    - To restrict access to data, create **authorized views** that have the right columns and filters. Put these views in a dataset. Grant access to this dataset as needed.
 - `--dry-run` is used to estimate the number of bytes scanned.
 
 ### Bigtable
@@ -120,6 +124,10 @@
 - Put incrementing values towards the end of the row key to avoid hot spotting.
 - Put columns frequently used together in a **column family**.
 - Tables have rows and columns. **Cells** exist as another dimension in Bigtable. They store multiple values that are indexed by timestamp. When a cell is retrieved, Bigtable returns the value with the latest timestamp by default.
+- Reduce the number of cells by storing as much data as possible in one cell.
+    - If rows contain a large number of cells because columns contain multiple timestamped versions of data, consider keeping only the most recent value.
+    - Another option for a table that already exists is to send a deletion for all previous versions with each rewrite.
+- When rows contain many cells because columns contain multiple timestamped vConsider keeping only the most 
 - Keep storage utilization per node below 60% for low latency applications.
 - Distributes operations based on row keys.
 - **HBase** is a column-oriented non-relational database management system that runs on top of Hadoop Distributed File System (HDFS).
@@ -238,23 +246,31 @@
 - **HDFS** is the Hadoop Distributed File System. It's a file system whose data is stored in a cluster of machines.
 - Use **ephemeral** clusters where possible. It is recommended to configure a cluster for a specific type of job, spin up the cluster, run the job, and stop the cluster. This way, cluster configuration can be optimized for the specific job and users can save on costs by not having clusters with low usage.
 - The number of preemptible workers should be less than **50%** of total workers in the cluster.
+- Can use BigQuery connector to set BigQuery as a source and sink.
 - `roles/dataproc.editor` will provide permissions to stop clusters, initiate workflow templates, and other common user tasks.
 - `gcloud dataproc clusters update --num-secondary-workers` updates the number of secondary workers in a node.
-- `gcloud clusters dataproc create --gce-pd-kms-key` specifies the key used to protect the cluster.
+- `gcloud dataproc clusters create --gce-pd-kms-key` specifies the key used to protect the cluster.
+- `gcloud dataproc clusters create --no-address` creates a cluster whose VMs are isolated from the public internet and have no public IP addresses. Private Google access must be enabled.
 
 ### Dataflow
 - Based on the **Apache Beam** open-source project.
+- Uses the same pipelines for batch and streaming data.
 - Because streaming data can be unbounded, a **window** is specified to bound data to be analyzed.
-    - sliding (hopping): Every 5 minutes, compute the average in the last hour. Can overlap.
-    - fixed (tumbling): Every hour, compute the average. Cannot overlap.
-    - session: For the time that a user was active, compute the average. Start and end intervals depend on external events.
+    - **sliding (hopping)**: Every 5 minutes, compute the average in the last hour. Can overlap.
+    - **fixed (tumbling)**: Every hour, compute the average. Cannot overlap.
+    - **session**: For the time that a user was active, compute the average. Start and end intervals depend on external events.
     - single **global window**: For data that is bounded and to be analyzed in a single window.
 - **Apache Beam** is analogous to this service. It implements and Apache Beam runner.
 - **Watermark** is a time after the end time of a window after which no more late-arriving data is accepted into the window's computation.
+- **Triggers** determine when to emit aggregated results as data arrives. By default, results are emitted when the watermark passes the end of the window.
+- Triggers can be set on any combination of the following conditions:
+    - **Event time**, as indicated by the timestamp on each data element.
+    - **Processing time**, which is the time that the data element is processed at any given stage in the pipeline.
+    - The **number of data elements** in a collection.
 - A **PCollection** represents key-value pair data in a distributed fashion.
 - A **side input** is an additional input that your `DoFn` can access each time it processes an element in the input PCollection.
 - A **custom window** is created using WindowFn functions to implement windows based on data-driven gaps.
-- **FlexRS** or flexible resource scheduling reduces batch processing costs using scheduling techniques and preemptible VMs.
+- **Flexors** or flexible resource scheduling reduces batch processing costs using scheduling techniques and preemptible VMs.
 - Runs distributed jobs on worker virtual machines. These machines use persisten disks to store window state and shuffle storage.
 - Instead of running distributed jobs on VMs, the backend service **Streaming Engine** can be used to run the same distributed jobs with better autoscaling and reduced resource usage.
 - **Dataflow Shuffle** is a backend service that can offload shuffle processing (GroupByKey, CoGroupByKey, Combine) from VMs. Only available in batch jobs. Used by batch jobs by default.
@@ -266,6 +282,11 @@
     - Combine: combine data like summing
     - Flatten: merge multiple PCollections into a single PCollection; like creating a single list from a list of lists
     - Partition: split a PCollection
+- Roles:
+    - Dataflow Admin (roles/dataflow.admin): Minimal role for creating and managing dataflow jobs.
+    - Dataflow Developer (roles/dataflow.developer): Provides the permissions necessary to execute and manipulate Dataflow jobs.
+    - Dataflow Viewer (roles/dataflow.viewer): Provides read-only access to all Dataflow-related resources.
+    - Dataflow Worker (roles/dataflow.worker): Provides the permissions necessary for a Compute Engine service account to execute work units for a Dataflow pipeline.
 - Metrics:
     - **job/system_lag** is the maximum duration that an item has been waiting in the pipeline.
     - **job/data_watermark_age** is the age of the most recent item that's been fully processed by the pipeline.
@@ -305,8 +326,11 @@
 
 <!-- ------------------------------------------------------------ -->
 ## Networking
-- **Virtual Private Cloud (VPC) networks** is a virtual version of a physical network, implemented inside of Google's production network, using Andromeda.
 - **DNS A records** associate an IP address with a domain name.
+
+### Virtual Private Cloud (VPC)
+- Virtual version of a physical network, implemented inside of Google's production network, using Andromeda.
+- When a VM lacks external IP addresses, it can only send packets to other internal IP address destinations. Enabling **Private Google Access** allows these VMs to access external Google APIs and services to use cloud resoruces.
 
 ### Cloud VPN
 - Used to connect two networks, one of which must be a VPC network in the cloud.
@@ -332,6 +356,7 @@
 ## Access Management and Security
 - An **organization** can contain many **folders**. A folder can contain many **projects**. These inherit policies hierarchically.
 - Billing of services occurs at the project level.
+- Maintain a separate project for each environment (development/test, staging, production).
 - Data in GCP is encrypted in transit and at rest automatically. Google also automatically handles the management of these encryption keys.
 - Encryption of data at rest occurs at multiple levels:
     - **Platform level** uses AES256 and AES128 encryption
@@ -352,6 +377,7 @@
 - **Service account keys** can be used to authenticate service accounts. They key pair is created; public key is stored in IAM and the private key is stored elsewhere for the application to use. When a request is made using the private key, IAM uses the public key to verify the private key.
 - According to the **principle of least privilege**, grant only the necessary permissions to users and service accounts.
 - To authorize a principal to do (x, y, z), a role is created that contains permissions for (x, y, z). This role is then granted to the principal through a policy binding.
+- Add users to groups then grant groups roles.
 - A GCP service Service1 that is not authorized to use another GCP service Service2 indicates that Service1 must be granted the Service Account User role.
 
 ### Cloud Key Management Service (KMS)
@@ -382,6 +408,8 @@
 - **Gradient descent** is a way to find the minimum of a function by moving in the direction where the derivative is most negative (steep).
 - **Backpropagation** is a widely used algorithm for training neural networks that uses the error and rate of change of the error to calculate weight adjustments. Gradient descent is often used to calculate these weight adjustments.
 - **Deep Learning** is a machine learning technique inspired by biological neural connections. It uses layers of **perceptrons** represent models.
+- In perceptron-based algorithms, an **epoch** is a training pass through the data. The number of epochs is a hyperparameter.
+- **Learning rate** is a hyperparameter that determines by how much to adjust weights based on the error.
 - **TensorFlow** is a deep learning framework developed by Google.
 
 ### Machine Learning Metrics
@@ -441,21 +469,26 @@
 - Caching
     - **Query caches** are is associated with report components, not with data sources. When a component generates a query, it checks the query cache and returns if there is a cahce hit. Components cache only the data they need to display their visualizations.
     - **Pre-fetch caching** is a feature where data studio anticipates the data needed and fetches it from the underlying data source before the data is requested.
+    - Owner credentials are required to use the enable cache option in BigQuery.
+    - Pre-fetch caching can only use data sources with the Owner credentials.
+    - Cache auto-expires after 12 hours.
     - The data in the cache can be old. Refresh the cache if new data is not being displayed.
 
 ### Pub/Sub
-- TODO: read documentation
 - Typically used as the first service to ingest high-volume streaming data.
 - A **topic** is an append-only log that producers can publish to and consumers can subscribe to.
 - To access the data in Pub/Sub, an application uses a **subscription**. A topic can have multiple subscriptions but a subscription can only be for one topic.
     - In a **push subscription**, Pub/Sub accesses an endpoint to send data. Used when multiple topics need to be processed by the same webhook.
     - In a **pull subscription**, the application sends a request to Pub/Sub to access the data. This is used when efficiency and throughput of message processing is critical.
     - In a **BigQuery subscription**, data is written to an existing BigQuery table as they are received.
-- **Apache Kafka** is an open-source alternative to this service.
 - **At least once** delivery guarantee. Data will be delivered to at least one consumer in every subscription to a topic.
 - Keeps data for 7 days by default. This retention period can be changed.
 - Once a consumer for each subscription to a topic has acknowledged receipt of a message, the message will be deleted from storage.
 - Can deliver data out of order and can deliver duplicates. Use in conjunction with Dataflow if you need data to be in order and to deduplicate.
+- When a subscriber does not acknowledge receipt of messages, the message is marked for retry.
+- A subscriber never acknowledging receipt of messages will result in a large amount of duplicate messages due to retrying.
+- **Apache Kafka** is an open-source alternative to this service.
+- Sharing Kafka data can be achieved using the Pub/Sub connector and Kafka Streams. Configure Pub/Sub to be the sink.
 - **subscription/num_undelivered_messages** is a metric that indicates how well subscribers are keeping up with data being ingested.
 - Define a schema during topic creation to ensure  to ensure messages are written with a standard structure.
 - Supports Protocol Buffer (ProtoBuf) and Avro formats for schema definition.

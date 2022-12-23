@@ -10,11 +10,16 @@
 
 ## Storage
 - Cloud Storage: https://cloud.google.com/storage/docs/introduction
+- Cloud Storage Transfer Service: https://cloud.google.com/storage-transfer/docs/overview
 - Choosing databases: https://cloud.google.com/blog/topics/developers-practitioners/your-google-cloud-database-options-explained
 
 ### BigQuery
     - Documentation: https://cloud.google.com/bigquery/docs/introduction
     - BigQuery best practices: https://cloud.google.com/bigquery/docs/best-practices-performance-patterns
+
+### BigTable
+    - Documentation: https://cloud.google.com/bigtable/docs/overview
+    - Performance: https://cloud.google.com/bigtable/docs/performance
 
 ## Transform
 ### Dataflow
