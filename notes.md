@@ -489,7 +489,8 @@
 - A subscriber never acknowledging receipt of messages will result in a large amount of duplicate messages due to retrying.
 - **Apache Kafka** is an open-source alternative to this service.
 - Sharing Kafka data can be achieved using the Pub/Sub connector and Kafka Streams. Configure Pub/Sub to be the sink.
-- **subscription/num_undelivered_messages** is a metric that indicates how well subscribers are keeping up with data being ingested.
+- Metrics:
+    - **subscription/num_undelivered_messages** is a metric that indicates how well subscribers are keeping up with data being ingested.
 - Define a schema during topic creation to ensure  to ensure messages are written with a standard structure.
 - Supports Protocol Buffer (ProtoBuf) and Avro formats for schema definition.
 - **Thrift** is an alternative to ProtoBuf.
